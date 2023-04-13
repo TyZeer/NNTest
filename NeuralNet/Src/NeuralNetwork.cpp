@@ -43,8 +43,8 @@ NeuralNetwork::NeuralNetwork(INeuralNetworkParametres& params) :
 
 NeuralNetwork& NeuralNetwork::AddBias(bool bias) 
 {
-	if (!Isinitialized) 
-		throw std::invalid_argument("Neural Network was not initialyzed!");
+	if (Isinitialized) 
+		throw std::invalid_argument("Neural Network already initialyzed! Please decide on Bias before calling SetLayers method!");
 
 	Do_add_bias = bias;
 
