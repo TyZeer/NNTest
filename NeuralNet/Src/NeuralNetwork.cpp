@@ -91,13 +91,14 @@ void NeuralNetwork::CalcOutputError(int position, float true_value, std::functio
 {
 	if (!Isinitialized) 
 		throw std::invalid_argument("Neural Network was not initialyzed!");
+    
+    Layer &output_layer = Layer_vect_[Layer_vect_.size()-1];
+	int _position = (position >= 0) and (position < output_layer.NeuronsCount()) ? position : throw std::invalid_argument("Invalid neuron postion!");
 
-	int set_position = position >= 0 and position < Network_configuration[0] ? position : throw std::invalid_argument("Invalid synapse postion!");
-
-	float Error=true_value - Layer_vect_[Layer_vect_.size()-1].GetNeuronVal(set_position);   //��� �����
-	OutputDifference[position] = Error;
-	Error *= act_deriv(Error);
-	Layer_vect_[Layer_vect_.size() - 1].SetNeuronError(set_position, Error); //�����
+    OutputDifference[_position] = true_value - output_layer.GetNeuronVal(_position);   //Saving difference for MSE
+	
+	float Error = (true_value - output_layer.GetNeuronVal(_position)) *  act_deriv(output_layer.GetNeuronVal(_position));
+	output_layer.SetNeuronError(_position, Error); //�����
 
 }
 
