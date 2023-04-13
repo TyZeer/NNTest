@@ -166,6 +166,7 @@ NeuralNetwork& NeuralNetwork::SetLayers(const std::vector<int>& Configuration )
 	
 	for (size_t i = 0; i < Configuration.size(); i++) //for every layer
 	{
+		Network_configuration.push_back(Configuration[i]);
 		if (i == 0)
 			Layer_vect_.push_back(Layer(Layerposition::Input, Configuration[i], Do_add_bias, 0));
 		else if (i == Network_configuration.size() - 1)
