@@ -1,27 +1,22 @@
 #pragma once
 #include "INeuralNetworkParametres.h"
 #include <vector>
-#include "Neuron.h"
-#include "Layer.h"
 #include <iostream>
+#include "memory"
 
 class NeuralNetwork
 {
 private:
-	float Learn_rate;
-	float Momentum;
-	bool Do_add_bias;
-	bool Isinitialized = false;
-	std::vector<Layer> Layer_vect_;
-	std::vector<int> Network_configuration;
-	std::vector<float> OutputDifference;
+	struct Impl;
+	std::unique_ptr<Impl> pimpl;
 public:
 	// 1st scenario:
 	// Creating an empty object
 	NeuralNetwork();
+	~NeuralNetwork();
 	// Setting it's parameters
-	NeuralNetwork& SetMomentum(float momentum) { Momentum = momentum; return *this; }
-	NeuralNetwork& SetLearnRate(float rate) { Learn_rate = rate; return *this; }
+	NeuralNetwork& SetMomentum(float momentum); //{ Momentum = momentum; return *this; }
+	NeuralNetwork& SetLearnRate(float rate); //{ Learn_rate = rate; return *this; }
 	NeuralNetwork& AddBias(bool bias);
 	NeuralNetwork& SetLayers(const std::vector<int>& Configuration);
 	

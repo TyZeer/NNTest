@@ -5,7 +5,9 @@
 #include <math.h>
 #include <vector>
 #include <iomanip>
-
+#include <functional>
+#include <cmath>
+#define  _USE_MATH_DEFINES
 #define INPUT_LAYER_SIZE 64
 #define OUTPUT_LAYER_SIZE 10
 
@@ -79,7 +81,7 @@ void RunNewSet( NNIcon& Icon, NeuralNetwork& Network )
     for( float value : Icon.data_){
         Network.SetInputNeuron(i++, value);
     }
-    Network.Calculate([](float val)->float {return 1.0F / (1.0f + (float)pow(M_E, val * -1.0f)); });
+    Network.Calculate([](float val)->float {return 1.0F / (1.0f + (float)pow(exp(1), val * -1.0f)); });
 }
 
 int GetResult( NeuralNetwork& Network, int output_layer_size )
