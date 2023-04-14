@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 # Other stuff
 *.DS_Store
+#ignore CMake files
+*build*
+#ignore vscode
+*.vscode*
