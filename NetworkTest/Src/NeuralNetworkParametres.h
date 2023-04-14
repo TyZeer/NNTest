@@ -1,5 +1,5 @@
 #pragma once
-#include "INeuralNetworkParametres.h"
+#include "NeuralNetwork.h"
 #include <vector>
 class NNParametres : public INeuralNetworkParametres
 {

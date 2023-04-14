@@ -127,13 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Src\INeuralNetworkParametres.cpp" />
     <ClCompile Include="Src\Layer.cpp" />
     <ClCompile Include="Src\NeuralNetwork.cpp" />
     <ClCompile Include="Src\Neuron.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\INeuralNetworkParametres.h" />
     <ClInclude Include="Src\Layer.h" />
     <ClInclude Include="Src\NeuralNetwork.h" />
     <ClInclude Include="Src\Neuron.h" />

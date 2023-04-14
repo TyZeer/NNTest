@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <functional>
 #include <cmath>
+
 #define  _USE_MATH_DEFINES
 #define INPUT_LAYER_SIZE 64
 #define OUTPUT_LAYER_SIZE 10
@@ -32,7 +33,7 @@ int main()
     Network
         .SetLearnRate(0.7f)
         .SetMomentum(0.6f)
-        .AddBias(false)
+        .AddBias(true)
         .SetLayers(NetworkConfig);
 
     srand((unsigned)time(NULL));
