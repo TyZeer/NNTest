@@ -50,9 +50,8 @@ int main()
     for( int times = 0; times < 3; times ++){
         std::cout << "\nRunning set # " << times+1 << std::endl;
         int rights = 0;
-        int set_no = 0;
-        int sub_count = 0;
-        for( auto& Icon : Icons.icon_vect_){
+        int set_no = 0, sub_count = 0;
+        for(auto& Icon : Icons.icon_vect_){
             RunNewSet(Icon, Network);
             if( GetResult(Network, NetworkConfig[NetworkConfig.size()-1]) == Icon.value_)
                 rights++;
@@ -78,7 +77,7 @@ int main()
 void RunNewSet( NNIcon& Icon, NeuralNetwork& Network )
 {
     int i = 0;
-    for( float value : Icon.data_){
+    for(float value : Icon.data_){
         Network.SetInputNeuron(i++, value);
     }
     Network.Calculate([](float val)->float {return 1.0F / (1.0f + (float)pow(exp(1), val * -1.0f)); });
