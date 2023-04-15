@@ -9,8 +9,6 @@ add_library(NeuralNet
             ./NeuralNet/Src/Layer.h 
             ./NeuralNet/Src/Neuron.cpp 
             ./NeuralNet/Src/Neuron.h 
-            ./NeuralNet/Src/INeuralNetworkParametres.cpp 
-            ./NeuralNet/Src/INeuralNetworkParametres.h
             )
 
 add_executable(NeuralTest 
@@ -18,6 +16,8 @@ add_executable(NeuralTest
             ./NetworkTest/Src/NNData.h 
             ./NetworkTest/Src/NeuralNetworkParametres.cpp 
             ./NetworkTest/Src/NeuralNetworkParametres.h 
-            ./NetworkTest/Src/main.cpp  )
+            ./NetworkTest/Src/main.cpp  
+            ./NetworkTest/Src/NeuralNetwork.h
+            )
 
 target_link_libraries(NeuralTest PRIVATE NeuralNet)
