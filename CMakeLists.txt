@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.12)
 
 project(NNTest VERSION 1.0.0)
 
+option(USE_STATIC "Use static library" ON )
+message(STATUS "OS: ${CMAKE_SYSTEM_NAME}")
+
 add_library(NeuralNet 
             ./NeuralNet/Src/NeuralNetwork.cpp 
             ./NeuralNet/Src/NeuralNetwork.h 
