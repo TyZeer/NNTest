@@ -23,7 +23,7 @@ int main()
     
     //Creating and loading a dataset from the file
     NNData Icons;
-    Icons.Read("C:/Users/ִלטענטי/Desktop/Dataset/optdigits.tra");
+    Icons.Read("Dataset/optdigits.tra");
     // Preparing dataset Setting values to fit in (-1:1)
     Icons.Prepare();
     
