@@ -50,15 +50,16 @@ public:
 	float MeanSquaredError();
 	void ShowNeuralNetworkParametres(std::ostream& output);
 	float GetOutputNeuronValue(int neuron_index);
-
+	
 	//Setters
 	//void SetMomentum(float momentum) {Momentum = momentum;}
 	//void SetLearnRate(float rate) { Learn_rate = rate; }
 	//void AddBias(bool bias);
 	
 	
-	//void Save(std::string path);
-	//void Load(std::string path);
+	void Save(std::string file_name);
+	
+	void Load(std::string file_name);
 };
 
 

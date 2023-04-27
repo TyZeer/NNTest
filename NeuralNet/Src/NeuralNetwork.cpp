@@ -1,11 +1,13 @@
 #include "NeuralNetwork.h"
 #include "Neuron.h"
 #include "string"
+#include <iostream>
 #include<iomanip>
 #include <fstream>
 #include "Neuron.h"
 #include "Layer.h"
-
+#include <iterator>
+#include <sstream>
 
 struct NeuralNetwork::Impl
 {
@@ -210,7 +212,6 @@ NeuralNetwork& NeuralNetwork::SetLayers(const std::vector<int>& Configuration )
 {
 	pimpl->ImplSetLayers(Configuration);
 	pimpl->Isinitialized = true;
-
 	return *this;	
 }
 
@@ -221,21 +222,63 @@ void NeuralNetwork::SetSynapseByIndex(int layernum, int neuronnum, int synapse_i
 }
 */
 
-/*
-void NeuralNetwork::Save(std::string path) 
+
+void NeuralNetwork::Save(std::string file_name)
 {
-	if (Layer_vect_.size() == 0) { throw std::invalid_argument("Has zero layers!"); }
-	std::fstream ofs(path);
-	float SynapseVal;
-	for (int i = 0; i < Network_configuration.size(); i++)
+	std::ofstream file(file_name);
+	file << pimpl->Momentum<<std::endl;
+	file << pimpl->Learn_rate<<std::endl;
+	file << pimpl->Layer_vect_.size() << std::endl;
+	for (size_t i = 0; i < pimpl->Layer_vect_.size(); i++)
 	{
-		for (size_t i = 0; i < length; i++)
-		{
-
-		}
-
+		file << pimpl->Layer_vect_[i].LayerSize()<<" ";
 
 	}
+	file << std::endl;
+	for (size_t i = 1; i < pimpl->Layer_vect_.size(); i++)
+	{
+		pimpl->Layer_vect_[i].SaveNeuronsSynapses(file);
+		file << std::endl;
+	}
+	file.close();
 }
-void NeuralNetwork::Load(std::string path) {}
-*/
+void  NeuralNetwork::Load(std::string file_name) 
+{
+	std::ifstream file(file_name);
+	std::string temp;
+	std::getline(file, temp);
+	pimpl->Momentum = ::atof(temp.c_str()); //присвоили моментум
+
+	std::getline(file, temp);
+	pimpl->Learn_rate = ::atof(temp.c_str()); //присвоили скорость обучения
+
+	std::getline(file, temp);
+	int layeramount = ::atof(temp.c_str()); // получили количество слоев
+
+	std::getline(file, temp);
+	std::vector<int> v;
+	std::stringstream ss(temp);
+	std::copy(std::istream_iterator<int>(ss), {}, back_inserter(v));
+	SetLayers(v);
+	
+	std::getline(file, temp);
+	std::vector<double> temp_vect;
+	std::stringstream str(temp);
+	std::copy(std::istream_iterator<double>(str), {}, back_inserter(temp_vect)); //Вылетает тут, надо разбирать...
+	for (size_t i = 0; i < pimpl->Layer_vect_.size(); i++)
+	{
+		for (size_t j = 0; j < v[i]; j++)
+		{
+			for (size_t k = 0; k < v[i+1]; k++)
+			{
+				pimpl->Layer_vect_[i].SetNeuronValue(j, temp_vect[k]);
+			}
+			
+		}
+		
+	}
+	
+}
+
+	
+

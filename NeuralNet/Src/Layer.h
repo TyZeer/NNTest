@@ -40,6 +40,9 @@ public:
 	void SetNeuronValue(int position, float value_to_set);
 	void SetNeuronError(int position, float value_to_set);
 
+	void SaveNeuronsSynapses(std::ofstream& file);
+	int LayerSize() ;
+
 };
 
 #endif

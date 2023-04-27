@@ -9,5 +9,6 @@ void NNParametres::SetNeuralNetworkConfiguration(std::vector<int>& NetConfig) {
 	NetConfig.push_back(2);
 	NetConfig.push_back(2);
 	NetConfig.push_back(1);
+	
 	//NetConfig.push_back(10);
 }

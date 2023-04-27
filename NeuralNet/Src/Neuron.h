@@ -10,7 +10,7 @@
 #include <math.h>
 #include <functional>
 #include "Layer.h"
-
+#include <fstream>
 
 struct Synapse {
 	float f_value_;
@@ -71,5 +71,6 @@ public:
 	//Setting new f_value and f_correction props values
 	void CorrectSynapsForNeuron(int index, float correction);
 	
+	void WriteVectorToFile(std::ofstream& file);
 };
 #endif

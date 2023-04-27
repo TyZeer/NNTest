@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <functional>
 #include <cmath>
+#include <fstream>
 
 #define  _USE_MATH_DEFINES
 #define INPUT_LAYER_SIZE 64
@@ -29,18 +30,19 @@ int main()
     
     std::vector<int> NetworkConfig = {64,50,50,10};
 
-    NeuralNetwork Network;
-    Network
+     NeuralNetwork Network;
+     Network.Load("Testing.txt");
+     /*Network
         .SetLearnRate(0.7f)
         .SetMomentum(0.6f)
         .AddBias(true)
-        .SetLayers(NetworkConfig);
+        .SetLayers(NetworkConfig);*/
 
-    srand((unsigned)time(NULL));
+    /*srand((unsigned)time(NULL));
     for (int i = 1; i < NetworkConfig.size(); i++)
     {
         Network.InitSynapseInLayer(i, [&]()->float {return( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) * sqrt(2.0f / NetworkConfig[i - 1])); });
-    }
+    }*/
     
     // Activation : [](float val)->float {return 1.0F / (1.0f + (float)pow(M_E, val * -1.0f)); }
     // Derivate : [](float val)->float {return val * (1.0F - val); }
@@ -71,6 +73,8 @@ int main()
             Network.BackPropogationError([](float val)->float {return val * (1.0F - val); });
         }
     }
+   
+   
 }
 
 

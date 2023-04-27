@@ -9,7 +9,7 @@ public:
 	virtual float SetNeuralNetworkLearnRate();
 	virtual bool DoAddBias();
 	virtual void SetNeuralNetworkConfiguration(std::vector<int>& NetConfig);
-
+	
 };
 
 

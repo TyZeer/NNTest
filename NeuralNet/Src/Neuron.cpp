@@ -92,3 +92,10 @@ void Neuron::CorrectSynapsForNeuron(int index, float correction) {
 	synaps_vect[index].f_value_ += correction;
 	synaps_vect[index].f_last_diff_ = correction;
 }
+void Neuron::WriteVectorToFile(std::ofstream& file) {
+	for (int i = 0; i < synaps_vect.size(); i++) {
+		file << synaps_vect[i].f_value_ << " ";             // ¬роде так, открыть, стоковый путь будет файлом в фигне, можно добавть проверку на наличие файла
+	}
+	file << std::endl;
+				//ј при новом открытии он продолжит писать с новой строки?
+}

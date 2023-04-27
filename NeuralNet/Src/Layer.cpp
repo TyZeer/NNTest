@@ -83,3 +83,14 @@ void Layer::BackPropogate(std::function<float(float)> act_deriv, float Learn_rat
 		}
 	}
 }
+void Layer::SaveNeuronsSynapses(std::ofstream& file)
+{
+	for (size_t i = 0; i < neurons_vect_.size(); i++)
+	{
+		neurons_vect_[i].WriteVectorToFile(file);
+	}
+}
+int Layer::LayerSize() 
+{
+	return neurons_vect_.size()-1;
+}
