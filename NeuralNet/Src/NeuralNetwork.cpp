@@ -261,6 +261,7 @@ void  NeuralNetwork::Load(std::string file_name)
 	std::copy(std::istream_iterator<int>(ss), {}, back_inserter(v));
 	SetLayers(v);
 	
+	// YOU ARE LOADING ONLY FIRST SYNAPSE VECTOR
 	std::getline(file, temp);
 	std::vector<double> temp_vect;
 	std::stringstream str(temp);
