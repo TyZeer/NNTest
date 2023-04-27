@@ -265,6 +265,7 @@ void  NeuralNetwork::Load(std::string file_name)
 	std::vector<double> temp_vect;
 	std::stringstream str(temp);
 	std::copy(std::istream_iterator<double>(str), {}, back_inserter(temp_vect)); //Вылетает тут, надо разбирать...
+	v.push_back(0);
 	for (size_t i = 0; i < pimpl->Layer_vect_.size(); i++)
 	{
 		for (size_t j = 0; j < v[i]; j++)
