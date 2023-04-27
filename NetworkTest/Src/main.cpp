@@ -13,6 +13,8 @@
 #define INPUT_LAYER_SIZE 64
 #define OUTPUT_LAYER_SIZE 10
 
+#define LOAD_FROM_FILE 1
+
 
     
 void RunNewSet( NNIcon& Icon, NeuralNetwork& Network );
@@ -31,19 +33,22 @@ int main()
     std::vector<int> NetworkConfig = {64,50,50,10};
 
      NeuralNetwork Network;
-     Network.Load("Testing.txt");
-     /*Network
+#ifdef LOAD_FROM_FILE
+     Network.Load("Network.dat");
+#endif
+#ifndef LOAD_FROM_FILE
+     Network
         .SetLearnRate(0.7f)
         .SetMomentum(0.6f)
         .AddBias(true)
-        .SetLayers(NetworkConfig);*/
+        .SetLayers(NetworkConfig);
 
-    /*srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
     for (int i = 1; i < NetworkConfig.size(); i++)
     {
         Network.InitSynapseInLayer(i, [&]()->float {return( static_cast <float> (rand()) / static_cast <float> (RAND_MAX) * sqrt(2.0f / NetworkConfig[i - 1])); });
-    }*/
-    
+    }
+#endif
     // Activation : [](float val)->float {return 1.0F / (1.0f + (float)pow(M_E, val * -1.0f)); }
     // Derivate : [](float val)->float {return val * (1.0F - val); }
     
@@ -73,8 +78,9 @@ int main()
             Network.BackPropogationError([](float val)->float {return val * (1.0F - val); });
         }
     }
-   
-   
+#ifndef LOAD_FROM_FILE
+   Network.Save("Network.dat");
+#endif
 }
 
 
